@@ -14,9 +14,9 @@ import java.util.List;
 @RequestMapping("/api")
 public class UserController {
 
-    // logger - log4j
+    // logger -log4j
     // Sl4j
-    // INFO, WARN,DEBUG,ERROR,TRACE
+    // INFO,WARN,DEBUG,ERROR,TRACE
     // Http method
     // status code
     @Autowired
