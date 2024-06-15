@@ -14,15 +14,19 @@ import java.util.List;
 @RequestMapping("/api")
 public class UserController {
 
+    // logger - log4j
+    // Sl4j
+    // INFO, WARN,DEBUG,ERROR,TRACE
     // Http method
     // status code
     @Autowired
     private UserServiceI userServiceI;
     // 200
 
-
+    //@PathVariable - pass single data
+    // @RequestBody - whole object
+    // @RequestParam - key-value data, ?,&
     //@RequestMapping(method = RequestMethod.Post, name="/users")
-
 
     @PostMapping("/users")
     public ResponseEntity<User> createUser(@RequestBody User user) {
@@ -30,7 +34,6 @@ public class UserController {
         return new ResponseEntity<>(savedUser, HttpStatus.OK);  // 200
 
     }
-
 
     @GetMapping("/users")
     public ResponseEntity<List<User>> getAllUsers() {
