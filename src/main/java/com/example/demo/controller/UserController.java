@@ -3,6 +3,8 @@ package com.example.demo.controller;
 
 import com.example.demo.model.User;
 import com.example.demo.service.UserServiceI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class UserController {
+
+    Logger log= LoggerFactory.getLogger(UserController.class);
 
     // logger -log4j
     // Sl4j
@@ -30,6 +34,7 @@ public class UserController {
 
     @PostMapping("/users")
     public ResponseEntity<User> createUser(@RequestBody User user) {
+        log.info("Entering the request for save user data");
         User savedUser = userServiceI.createUser(user);
         return new ResponseEntity<>(savedUser, HttpStatus.OK);  // 200
 
@@ -43,7 +48,9 @@ public class UserController {
 
     @GetMapping("/users/{userId}")
     public ResponseEntity<User> getSingleUser(@PathVariable Long userId) throws Exception {
+      log.info("Entering the request for get user data with userId{}", userId);
         User user = userServiceI.getSingleUser(userId);
+        log.info("Completed the request for get user data with userId{}", userId);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 

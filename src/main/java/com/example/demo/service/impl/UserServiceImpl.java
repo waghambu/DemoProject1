@@ -3,6 +3,8 @@ package com.example.demo.service.impl;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserServiceI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserServiceI {
+
+    Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -22,7 +26,9 @@ public class UserServiceImpl implements UserServiceI {
 
     @Override
     public User createUser(User user) {
+        log.info("Initiating the dao call for the save user data");
         User savedUser = userRepository.save(user);
+        log.info("Completed the dao call for the save user data");
         return savedUser;
     }
 
@@ -45,10 +51,11 @@ public class UserServiceImpl implements UserServiceI {
 
     @Override
     public User getSingleUser(Long userId) throws Exception {
-
-        userRepository.findById(userId).orElseThrow(() -> new RuntimeException("Resource not found on server"));
-
-        return null;
+        log.info("Initiating the dao call for get single user data as userId{}:",userId);
+       User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Resource not found on server"));
+        log.info("completed the dao call for get single user data as userId{}:",userId);
+        return user;
 
     }
 
