@@ -14,7 +14,7 @@ public interface UserServiceI {
 
     //User
 
-    User updateUser(User user,Long UserId);
+    User updateUser(User user,Long userId);
 
 
     //get(single data)
